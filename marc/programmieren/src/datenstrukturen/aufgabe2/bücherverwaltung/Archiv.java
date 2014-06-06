@@ -18,24 +18,26 @@ public class Archiv {
 	}
 	
 	private void parseFile(File f){
-		try(BufferedReader in = new BufferedReader(new FileReader(f))){
-			String line;
-			
-			while((line = in.readLine()) != null){
-				String[] split = line.split(";");
+		if(f.exists()){
+			try(BufferedReader in = new BufferedReader(new FileReader(f))){
+				String line;
 				
-				if(split.length >= 4){
-					String autor = split[0];
-					String titel = split[1];
-					int jahr = Integer.parseInt(split[2]);
-					String verlag = split[3];
-					Buch buch = new Buch(autor, titel, jahr, verlag);
+				while((line = in.readLine()) != null){
+					String[] split = line.split(";");
 					
-					books.add(buch);
+					if(split.length >= 4){
+						String autor = split[0];
+						String titel = split[1];
+						int jahr = Integer.parseInt(split[2]);
+						String verlag = split[3];
+						Buch buch = new Buch(autor, titel, jahr, verlag);
+						
+						books.add(buch);
+					}
 				}
+			}catch(Exception ex){
+				ex.printStackTrace();
 			}
-		}catch(Exception ex){
-			ex.printStackTrace();
 		}
 	}
 	
