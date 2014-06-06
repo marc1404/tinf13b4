@@ -1,0 +1,6 @@
+{
+ addresses: [
+ 	{ name: "Schneider", vorname: "Simon", email: "simon@schneider.de", mobil: "12345" },
+ 	{ name: "los mit dir?!", vorname: "Wat is denn", email: "boss@haft.de", mobil: "7353" }
+ ]
+}
