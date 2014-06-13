@@ -1,4 +1,4 @@
-package datenstrukturen.aufgabe2.bücherverwaltung;
+package datenstrukturen.aufgabe2.bucherverwaltung;
 
 public class Buch {
 
