@@ -4,7 +4,7 @@ public enum Monate {
 	
 	JANUAR("Januar", 31, new String[]{"Hartung", "Eismond"}),
 	FEBRUAR("Februar", 28, new String[]{"Hornung", "Schmelzmond", "Taumond", "Narrenmond", "Rebmond", "Hintester"}),
-	MÄRZ("März", 31, new String[]{"Lenzing", "Lenzmond"}),
+	MAERZ("M�rz", 31, new String[]{"Lenzing", "Lenzmond"}),
 	APRIL("April", 30, new String[]{"Launing", "Ostermond"}),
 	MAI("Mai", 31, new String[]{"Winnemond", "Blumenmond"}),
 	JUNI("Juni", 30, new String[]{"Brachet", "Brachmond"}),
