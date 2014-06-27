@@ -20,7 +20,7 @@ public class MyBuffer {
 		this.values.add(v);
 		
 		System.out.println("Put: " + v);
-		System.out.println("FÃ¼llstand: " + values.size());
+		System.out.println("Füllstand: " + values.size());
 		
 		notify();
 	}
@@ -39,7 +39,7 @@ public class MyBuffer {
 		v = values.remove(0);
 		
 		System.out.println("Get: " + v);
-		System.out.println("FÃ¼llstand: " + values.size());
+		System.out.println("Füllstand: " + values.size());
 		
 		notify();
 		
