@@ -1,4 +1,3 @@
-<!--
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -28,9 +27,11 @@ f1
 </form>
 </fieldset>
 <c:if test="${param.f0.length() > 0 && param.f1.length() > 0}">
-	<c:set var="f">${0}</c:set>
+	<c:set var="f0">${param.f0}</c:set>
+	<c:set var="f1">${param.f1}</c:set>
+	<c:set var="f">${f0 + f1}</c:set>
 	<c:forEach begin="0" end="20" var="i">
-		<c:set var="f">${f + f0}</c:set>
+		<c:set var="f">${f + f0} </c:set>
 		<p><c:out value="${f}" /></p>
 	</c:forEach>
 </c:if>
@@ -38,5 +39,4 @@ f1
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
-</html>
--->
+</html> 
