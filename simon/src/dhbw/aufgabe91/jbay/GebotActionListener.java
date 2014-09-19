@@ -18,18 +18,25 @@ public class GebotActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		String gebotInput = frame.showInput("Wie viel möchten Sie bieten");
+		Auktionshaus auktionsHaus = frame.getAuktionshaus();
+		Auktion auktion = auktionPanel.auktion;
+		Bieter bieter = frame.getBieter();
+		
+		String gebotInput = frame.showInput("Wie viel möchten Sie bieten. Mindestens " +  auktion.minimalGebot() +  " Euro.");
 		if(gebotInput == null) return;
 		
 		
 		Double gebotNumeric = Double.parseDouble(gebotInput);
 		
-		Auktionshaus auktionsHaus = frame.getAuktionshaus();
-		Auktion auktion = auktionPanel.auktion;
-		Bieter bieter = frame.getBieter();
+		
 		
 		Gebot gebot = new Gebot(gebotNumeric, bieter);
 		auktionsHaus.log(gebot.logEntry(auktion));
+		
+		if(!auktion.isRunning()){
+			frame.showAlert("Diese Auktion ist bereits vorbei");			
+			return;
+		}
 		
 		Boolean gebotAbgabe = auktion.gebotAbgeben(gebot);
 		

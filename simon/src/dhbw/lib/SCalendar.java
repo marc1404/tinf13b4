@@ -15,8 +15,8 @@ public class SCalendar extends Calendar{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static SCalendar currentTime(){
-		return (SCalendar) SCalendar.getInstance();
+	public static Calendar currentTime(){
+		return SCalendar.getInstance();
 	}
 	
 	public String timeString(){

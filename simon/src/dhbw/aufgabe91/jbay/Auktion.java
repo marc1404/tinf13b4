@@ -35,6 +35,8 @@ public class Auktion {
 		if(this.gleicheBieter(g) && this.gebotHöher(g)){
 			this.setMaxgebot(g);
 			return true;
+		} else if(this.gleicheBieter(g) && !this.gebotHöher(g)){
+			return false;
 		}
 		
 		//Anderer Bieter erhöht
@@ -48,6 +50,10 @@ public class Auktion {
 		
 		return false;
 		
+	}
+	
+	public boolean isRunning(){
+		return ende.after(dhbw.lib.SCalendar.currentTime());
 	}
 	
 	public boolean gleicheBieter(Gebot g){

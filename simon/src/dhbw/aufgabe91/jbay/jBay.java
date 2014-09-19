@@ -8,9 +8,9 @@ public class jBay {
 		
 		Auktionshaus jbay = new Auktionshaus();
 		
-		jbay.addAuktion(new Auktion( new Ware("Turnschuhe", "Tolle Turnschuhe, kaum getragen"), 2));
-		jbay.addAuktion(new Auktion( new Ware("iPad", "Uraltes ipad 3"), 4));
-		jbay.addAuktion(new Auktion( new Ware("Currywurst", "Scharf, ohne Pommes"), 5));
+		jbay.addAuktion(new Auktion( new Ware("Turnschuhe", "Tolle Turnschuhe, kaum getragen"), 1));
+		jbay.addAuktion(new Auktion( new Ware("iPad", "Uraltes ipad 3"), 2));
+		jbay.addAuktion(new Auktion( new Ware("Currywurst", "Scharf, ohne Pommes"), 3));
 		
 		BieterTerminal b1 = new BieterTerminal(new Bieter("Micky", "Maus"), jbay);
 		BieterTerminal b2 = new BieterTerminal(new Bieter("Donald", "Duck"), jbay);

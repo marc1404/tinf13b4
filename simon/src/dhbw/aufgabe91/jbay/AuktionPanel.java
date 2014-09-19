@@ -54,6 +54,11 @@ public class AuktionPanel extends JPanel{
 
 	
 	public void updatePanel(){
+		if(!auktion.isRunning()){
+			this.setEnabled(false);
+			return;
+		}
+		
 		lblName.setText(auktion.getWare().getTitel());
 		
 		String preisText = String.valueOf(auktion.getPreis()) + " €";
@@ -70,7 +75,10 @@ public class AuktionPanel extends JPanel{
 		else
 			lblBieter.setText("--");
 		
-		lblEnde.setText(auktion.getEnde().getTime().toString());		
+		lblEnde.setText(auktion.getEnde().getTime().toString());	
+		
+		
+		
 	}
 	
 	public Auktion getAuktion() {
