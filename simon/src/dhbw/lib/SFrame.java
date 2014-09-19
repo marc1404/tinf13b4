@@ -4,18 +4,21 @@ import java.awt.Component;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
 public class SFrame extends JFrame {
+	public static String defaultMessageTitle;
+	
 	private JPanel mainPanel;
+	
 	
 	public SFrame(){
 		System.out.println("SFRAME: prepare GUI");
 		this.prepareGui();
-		
 	}
 	
 	public void prepareGui(){
@@ -35,7 +38,7 @@ public class SFrame extends JFrame {
 		
 		
 	}
-	
+		
 	public void addToGui(Component toAdd){
 		this.mainPanel.add(toAdd);
 	}
@@ -44,9 +47,30 @@ public class SFrame extends JFrame {
 		this.setSize(500, 300);
 		this.setResizable(resizable);
 		
-		//this.pack();
+		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+	}
+	
+	public void showAlert(String message){
+		this.showAlert(message, defaultMessageTitle);
+	}
+	
+	public void showAlert(String message, String title){
+		JOptionPane.showMessageDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public String showInput(String message){
+		return this.showInput(message, defaultMessageTitle);
+	}
+	
+	public String showInput(String message, String title){
+		try{
+			return JOptionPane.showInputDialog(this, message);
+		} catch(Exception e){
+			return null;
+		}
 	}
 	
 	
