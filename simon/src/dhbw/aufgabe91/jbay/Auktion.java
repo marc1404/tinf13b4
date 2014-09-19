@@ -41,7 +41,7 @@ public class Auktion {
 		
 		//Anderer Bieter erhöht
 		if(!this.gleicheBieter(g) && this.gebotHöher(g)){
-			this.setPreis(this.maxgebot.getMaxbetrag());
+			this.setPreis(this.maxgebot.getMaxbetrag() );
 			this.setMaxgebot(g);			
 			return true;
 		}
