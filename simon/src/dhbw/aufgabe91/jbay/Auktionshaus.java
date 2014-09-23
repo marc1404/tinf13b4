@@ -50,6 +50,7 @@ public class Auktionshaus {
 		for (BieterTerminal bieterTerminal : bieterTerminals) {
 			bieterTerminal.updateTerminal();
 		}
+
 	}
 	
 	

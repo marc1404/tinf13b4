@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Zoo {
+	
+	private int max;
+	private ZooTier[] tiere;
 
 	public static void main(String[] args){
 		if(args.length >= 1){
@@ -14,7 +17,7 @@ public class Zoo {
 			try{
 				zoo.addAnimal(new Raubtier("Tiger", "Fred"));
 				zoo.addAnimal(new Raubtier("Tiger", "Lisa"));
-				zoo.addAnimal(new Raubtier("Löwe", "Simba"));
+				zoo.addAnimal(new Raubtier("Loewe", "Simba"));
 				zoo.addAnimal(new Singvogel("Kleiber", "Hansi"));
 				zoo.addAnimal(new Singvogel("Schneeammer", "Sina"));
 				zoo.addAnimal(new Singvogel("Zaunkoenig", "Henry"));
@@ -56,8 +59,7 @@ public class Zoo {
 		}
 	}
 	
-	private int max;
-	private ZooTier[] tiere;
+
 	
 	public Zoo(int max){
 		this.max = max;
@@ -65,17 +67,17 @@ public class Zoo {
 	}
 	
 	public void addAnimal(ZooTier tier) throws ZooCapacityException {
-			for(int i = 0; i < tiere.length; i++){
-				if(tiere[i] == null){
-					tiere[i] = tier;
-					
-					System.out.println(tier.toString() + " zum Zoo hinzugefügt.");
-					
-					return;
-				}
+		for(int i = 0; i < tiere.length; i++){
+			if(tiere[i] == null){
+				tiere[i] = tier;
+				
+				System.out.println(tier.toString() + " zum Zoo hinzugefügt.");
+				
+				return;
 			}
-			
-			throw new ZooCapacityException(max);
+		}
+		
+		throw new ZooCapacityException(max);
 	}
 	
 	public ZooTier[] getAnimals(){

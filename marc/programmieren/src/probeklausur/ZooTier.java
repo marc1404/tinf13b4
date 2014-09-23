@@ -16,7 +16,7 @@ public class ZooTier {
 		if(futter.equals(this.futter)){
 			System.out.println(name + " (" + art + ") frisst " + futter);
 		}else{
-			System.out.println(name + " (" + art + ") verschmäht " + futter);
+			System.out.println(name + " (" + art + ") verschmaeht " + futter);
 		}
 	}
 	
