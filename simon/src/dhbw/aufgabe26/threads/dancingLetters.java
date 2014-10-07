@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import dhbw.lib.SFrame;
+import dhbw.lib.SimonsFrame;
 
-public class dancingLetters extends SFrame{
+public class dancingLetters extends SimonsFrame{
 	
 	public dancingLetters(){
 		

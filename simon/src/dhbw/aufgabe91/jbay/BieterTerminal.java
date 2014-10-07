@@ -7,9 +7,9 @@ import java.util.List;
 
 import javax.swing.JLabel;
 
-import dhbw.lib.SFrame;
+import dhbw.lib.SimonsFrame;
 
-public class BieterTerminal extends SFrame {
+public class BieterTerminal extends SimonsFrame {
 
 	private Bieter bieter;
 	private Auktionshaus auktionshaus;

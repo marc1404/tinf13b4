@@ -3,14 +3,14 @@ package dhbw.aufgabe91.jbay;
 import java.util.ArrayList;
 import java.util.List;
 
-import dhbw.lib.SLogger;
+import dhbw.lib.SimonsLogger;
 
 public class Auktionshaus {
 		
 	private List<Auktion> auktionen = new ArrayList<Auktion>();
 	private List<BieterTerminal> bieterTerminals = new ArrayList<BieterTerminal>();
 
-	private SLogger logger = new SLogger("logfile.txt", true);
+	private SimonsLogger logger = new SimonsLogger("logfile.txt", true);
 	
 	
 	public Auktionshaus(){

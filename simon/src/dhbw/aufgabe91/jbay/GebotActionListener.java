@@ -3,7 +3,7 @@ package dhbw.aufgabe91.jbay;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import dhbw.lib.SFrame;
+import dhbw.lib.SimonsFrame;
 
 public class GebotActionListener implements ActionListener {
 

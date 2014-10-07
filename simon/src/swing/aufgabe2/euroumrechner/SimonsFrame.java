@@ -1,4 +1,4 @@
-package dhbw.lib;
+package swing.aufgabe2.euroumrechner;
 
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -10,13 +10,13 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
-public class SFrame extends JFrame {
+public class SimonsFrame extends JFrame {
 	public static String defaultMessageTitle;
 	
 	private JPanel mainPanel;
 	
 	
-	public SFrame(){
+	public SimonsFrame(){
 		System.out.println("SFRAME: prepare GUI");
 		this.prepareGui();
 	}

@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class BookManagementFrame extends dhbw.lib.SFrame {
+public class BookManagementFrame extends dhbw.lib.SimonsFrame {
 
 	public BookManagementFrame(){
 		super();

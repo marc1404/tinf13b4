@@ -4,8 +4,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
-public class SLogger {
+public class SimonsLogger {
 
 	private String fileName;
 	private File file;
@@ -17,7 +19,7 @@ public class SLogger {
 	/**
 	 * @param fileName
 	 */
-	public SLogger(String fileName, Boolean append) {
+	public SimonsLogger(String fileName, Boolean append) {
 		this.fileName = fileName;
 		
 		this.file = new File(this.fileName);
@@ -66,5 +68,19 @@ public class SLogger {
 	 */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	
+	public String readFile(){
+		String text;
+		
+		try {
+			text = new String(Files.readAllBytes(this.file.toPath()), StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Error while read file.");
+			return "";			
+		}
+		
+		return text;
 	}
 }

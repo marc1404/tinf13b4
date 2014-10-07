@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import dhbw.lib.SFrame;
+import dhbw.lib.SimonsFrame;
 
 public class AuktionPanel extends JPanel{
 
