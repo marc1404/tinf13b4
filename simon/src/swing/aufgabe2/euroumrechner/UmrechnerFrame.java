@@ -3,10 +3,15 @@ package swing.aufgabe2.euroumrechner;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class UmrechnerFrame extends dhbw.lib.SimonsFrame{
@@ -33,7 +38,7 @@ public class UmrechnerFrame extends dhbw.lib.SimonsFrame{
 	}
 	
 	private void buildForm(){
-		final JFrame frame = this;
+		final UmrechnerFrame frame = this;
 		this.inputMoney = new JTextField();
 		this.btnToDollar = new JButton("Zu Dollar");
 		this.btnToEuro = new JButton("Zu Euro");
@@ -56,6 +61,49 @@ public class UmrechnerFrame extends dhbw.lib.SimonsFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				
+			}
+		});
+		
+		
+		/**
+		 * MENU BAR
+		 */
+		JMenuBar menuBar = this.createMenuBar();
+		JMenu convertMenu = new JMenu("Konvertieren");
+		
+		JMenuItem itemToEuro = new JMenuItem("Zu Euro");		
+		JMenuItem itemToDollar = new JMenuItem("Zu Dollar");
+		
+		itemToDollar.addActionListener(new UmrechnerListener(this, false));
+		itemToEuro.addActionListener(new UmrechnerListener(this, true));
+		
+		convertMenu.add(itemToDollar);
+		convertMenu.add(itemToEuro);
+		
+		menuBar.add(convertMenu);
+		
+		/**
+		 * Radio Group
+		 */
+		
+		final JRadioButton radioToEuro = new JRadioButton("Zu Euro");
+		JRadioButton radioToDollar = new JRadioButton("Zu Dollar");
+		ButtonGroup btnRadios = new ButtonGroup();
+		btnRadios.add(radioToEuro);
+		btnRadios.add(radioToDollar);
+		
+		
+		JPanel radioPanel = this.addPanel(1, 3);
+		radioPanel.add(radioToEuro);
+		radioPanel.add(radioToDollar);
+		
+		JButton radioButton = new JButton("Konvertieren");
+		radioPanel.add(radioButton);
+		radioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Boolean toEuro = radioToEuro.isSelected();
+				frame.doCalculation(toEuro);
 				
 			}
 		});
