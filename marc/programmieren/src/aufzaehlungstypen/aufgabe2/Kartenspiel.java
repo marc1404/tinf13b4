@@ -9,8 +9,8 @@ public class Kartenspiel {
 	private List<Spielkarte> stapel = new ArrayList<Spielkarte>(32);
 	
 	public Kartenspiel(){
-		for(Farbe farbe:Farbe.values()){
-			for(Kartenwert wert:Kartenwert.values()){
+		for(Farbe farbe : Farbe.values()){
+			for(Kartenwert wert : Kartenwert.values()){
 				stapel.add(new Spielkarte(farbe, wert));
 			}
 		}

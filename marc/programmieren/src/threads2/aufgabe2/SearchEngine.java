@@ -21,7 +21,12 @@ public class SearchEngine extends Thread {
 		this.maxThreads = maxThreads;
 		
 		try{
-			List<String> lines = Files.readAllLines(new File("pages.txt").toPath(), Charset.forName("UTF-8"));
+			//List<String> lines = Files.readAllLines(new File("pages.txt").toPath(), Charset.forName("UTF-8"));
+			List<String> lines = new ArrayList<String>();
+			lines.add("http://www.google.de");
+			lines.add("http://www.wikipedia.de");
+			lines.add("http://www.facebook.de");
+			lines.add("http://www.twitter.de");
 			
 			for(String line:lines){
 				urlQueue.add(new URL(line));
