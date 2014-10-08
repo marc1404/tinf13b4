@@ -3,8 +3,8 @@ package vererbung.periodensystem;
 public enum Aggregatzustand {
 
 	FEST(1),
-	FLÜSSIG(2),
-	GASFÖRMIG(3);
+	FLUESSIG(2),
+	GASFOERMIG(3);
 	
 	private int zustand;
 	
