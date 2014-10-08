@@ -30,9 +30,13 @@
 			"use strict";
 			
 			function loadPage1(){
-				$.get("page1.json", function(data){
-					refreshTable(data);
-				});
+				var fkt = function(response){
+					var json = JSON.parse(response);
+					
+					refreshTable(json);
+				};
+				
+				ajax("page1.json", fkt);
 			}
 			
 			function loadPage2(){
@@ -49,6 +53,20 @@
 				}
 				console.log(html.join(""));
 				$("table").html(html.join(""));
+			}
+			
+			function ajax(url, callback){
+				var req = new XMLHttpRequest();
+				
+				req.open("GET", url, true);
+				
+				req.onreadystatechange = function(){
+					if(req.readyState === 4){
+						callback(req.responseText);
+					}
+				};
+				
+				req.send();
 			}
 		</script>
 	</body>
