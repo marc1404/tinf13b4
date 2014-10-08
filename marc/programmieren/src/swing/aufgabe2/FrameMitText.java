@@ -12,7 +12,7 @@ public class FrameMitText extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	public FrameMitText(String rahmentitel, int breite, int höhe, String dateiname){
+	public FrameMitText(String rahmentitel, int breite, int hoehe, String dateiname){
 		try{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}catch(Exception ex){
@@ -34,7 +34,7 @@ public class FrameMitText extends JFrame {
 		
 		this.add(new JTextArea(text.toString()));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(breite, höhe);
+		this.setSize(breite, hoehe);
 		this.setTitle(rahmentitel);
 		this.setVisible(true);
 	}
