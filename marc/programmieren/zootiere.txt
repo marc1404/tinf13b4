@@ -1,5 +1,0 @@
-Tiger;Fred;Raubtier
-Tiger;Lisa;Raubtier
-Löwe;Simba;Raubtier
-Kleiber;Hansi;Singvogel
-Schneeammer;Sina;Singvogel
