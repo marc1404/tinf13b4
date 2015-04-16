@@ -80,9 +80,15 @@ public class Scanner {
 			
 			StateType oldState = this.state.type;
 			
-			Token returnToken = Token.createEmptyToken();
+			Token returnToken = Token.createEmptyToken();			
 			
 			TokenType nextTokenType = TokenType.EMPTY;
+			
+			DecisionRule applyingRule = decisionBoard.decide(this.state, character);
+			this.changeState(applyingRule.nextState);
+
+			
+			/*
 			boolean outputToken = false;
 			
 			if(state.isAny() && character.hasType(CharacterType.WS) ){
@@ -156,21 +162,20 @@ public class Scanner {
 				nextTokenType = TokenType.INVALID;
 				outputToken = true;
 			}
-			
+			*/
 						
-			if(outputToken && this.tokenSafe != null){				
+			if(applyingRule.outputToken && this.tokenSafe != null){				
 				returnToken = new Token(this.tokenSafe);
 				this.clearTokenSafe();
 				
 			}
 			
-			this.fillTokenSafe(nextTokenType, character);		
+			this.fillTokenSafe(applyingRule.nextTokenType, character);		
 			
 			StateType newState = this.state.type;
 			
 			System.out.println("Character '" + character.getChar() + "' " + oldState + "->" + newState);			
-
-			
+		
 			
 			if(this.currentRead.equals("NULL")){
 				this.changeTokenSafe(TokenType.NULL);
