@@ -22,6 +22,9 @@ public class State {
 	
 	public boolean is(String string){
 		if(string.equals("*")) return this.isAny();
+		if(string.equals("_VALID")){
+			return !this.isInvalid();
+		}
 		
 		return this.is(this.stringToTypes(string));
 	}

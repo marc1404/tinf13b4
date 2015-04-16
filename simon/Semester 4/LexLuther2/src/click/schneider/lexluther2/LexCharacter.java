@@ -63,6 +63,10 @@ public class LexCharacter {
 		if(isAlphaNumeric){
 			detectedTypes.add(CharacterType.ALPHANUMERIC);
 		}
+		
+		if(this.types.size() == 0){
+			detectedTypes.add(CharacterType.INVALID);
+		}
 					
 		return detectedTypes;
 	}

@@ -10,18 +10,18 @@ public class DecisionRule {
 	
 	public CharacterType characterType;
 	
-	public StateType nextState;
+	public State nextState;
 	
 	public Boolean outputToken;
 	
 	TokenType nextTokenType;
 
 	public DecisionRule(String state, CharacterType characterType,
-			StateType nextState, Boolean outputToken, TokenType nextTokenType) {
+			StateType nextStateType, Boolean outputToken, TokenType nextTokenType) {
 		super();
 		this.stateTypes = state;
 		this.characterType = characterType;
-		this.nextState = nextState;
+		this.nextState = new State(nextStateType);
 		this.outputToken = outputToken;
 		this.nextTokenType = nextTokenType;
 	}
@@ -40,7 +40,10 @@ public class DecisionRule {
 		
 	}
 	
+	
 	public static DecisionRule invalidRule(){
+		
+		
 		return new DecisionRule("*", CharacterType.EMPTY, StateType.INVALID, false, TokenType.INVALID);
 	}
 
