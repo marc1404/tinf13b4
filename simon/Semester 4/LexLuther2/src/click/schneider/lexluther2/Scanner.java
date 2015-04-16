@@ -44,10 +44,10 @@ public class Scanner {
 		
 		while(this.token != null){			
 			this.token = this.nextToken();
-			System.out.println(this.token);
-			System.out.println("========");
 			
 			if(this.token == null) break;
+			else 			System.out.println("======== " + this.token.type);
+
 			
 			this.tokens.add(this.token);
 		}
@@ -68,12 +68,13 @@ public class Scanner {
 		
 		while(true){
 			LexCharacter character = this.nextCharacter();		
-			System.out.println(character.toString());
-			
+		
 			if(character.isEmpty()) {
 				this.endReached = true;
 				return this.tokenSafe;
 			}
+			
+			StateType oldState = this.state.type;
 			
 			Token returnToken = Token.createEmptyToken();
 			
@@ -104,7 +105,7 @@ public class Scanner {
 			} else if(state.is("NUMBER") && character.hasType(CharacterType.DIGIT) ){
 				this.changeState(StateType.NUMBER);
 				nextTokenType = TokenType.NUMBER;
-			} else if(state.is("LSBR,RSBR,COMMA") && character.hasType(CharacterType.ALPHA) ){
+			} else if(state.is("LSBR,RSBR,COMMA") && (character.hasType(CharacterType.ALPHA)) ){
 				this.changeState(StateType.NAME);
 				nextTokenType = TokenType.NAME;
 				outputToken = true;
@@ -112,10 +113,21 @@ public class Scanner {
 				this.changeState(StateType.NAME);
 				nextTokenType = TokenType.NAME;
 			} 
+			else if(state.is("DECIMAL") && character.hasType(CharacterType.ALPHA)){
+				this.changeState(StateType.NAME);
+				nextTokenType = TokenType.NAME;
+				outputToken = true;
+			}
+			else if(state.is("FLOAT") && character.hasType(CharacterType.ALPHA) ){
+				this.changeState(StateType.NAME);
+				nextTokenType = TokenType.NAME;
+				outputToken = true;
+			}
 			else if(state.is("NUMBER") && character.hasType(CharacterType.DOT)){
 				this.changeState(StateType.DOT);
 				nextTokenType = TokenType.FLOAT;
 			}
+			
 			else if(state.is("NUMBER") && character.hasType(CharacterType.ALPHA)){
 				this.changeState(StateType.NAME);
 				nextTokenType = TokenType.NAME;
@@ -146,6 +158,10 @@ public class Scanner {
 			
 			this.fillTokenSafe(nextTokenType, character);		
 			
+			StateType newState = this.state.type;
+			
+			System.out.println("Character '" + character.getChar() + "' " + oldState + "->" + newState);			
+
 			
 			
 			if(this.currentRead.equals("NULL")){

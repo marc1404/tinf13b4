@@ -7,9 +7,7 @@ public class Main {
 		String input = "[12.5a3,asd,asd]";
 		
 	
-		Scanner lexer = new Scanner(input);
-		
-		
+		Scanner lexer = new Scanner(input);	
 
 	}
 
