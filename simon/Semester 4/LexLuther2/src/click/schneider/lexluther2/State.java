@@ -21,6 +21,8 @@ public class State {
 	}
 	
 	public boolean is(String string){
+		if(string.equals("*")) return this.isAny();
+		
 		return this.is(this.stringToTypes(string));
 	}
 	
@@ -58,15 +60,14 @@ public class State {
 	}
 	
 	
+	public boolean isInvalid(){
+		return this.is(StateType.INVALID);
+	}
+	
 	
 	public static State createEmpty(){
 		return new State(StateType.EMPTY);
 	}
 	
-	public static State fromCharacter(LexCharacter character){
-		StateType type = StateType.EMPTY;
-		if(character.hasType(CharacterType.ALPHA)) type = StateType.NAME;
-		
-		return new State(type);
-	}
+	
 }

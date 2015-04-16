@@ -3,6 +3,8 @@ package click.schneider.lexluther2;
 import java.util.ArrayList;
 
 import click.schneider.lexluther2.Enum.CharacterType;
+import click.schneider.lexluther2.Enum.StateType;
+import click.schneider.lexluther2.Enum.TokenType;
 
 public class LexCharacter {
 	
@@ -128,6 +130,23 @@ public class LexCharacter {
 		}
 		
 		return this.character + " : " + types;
+	}
+	
+	public StateType guessStateType(){
+		StateType type = StateType.INVALID;
+		if(this.hasType(CharacterType.ALPHA)) type = StateType.NAME;
+		if(this.hasType(CharacterType.DIGIT)) type = StateType.NUMBER;
+
+		return type;
+	}
+
+	
+	public TokenType guessTokenType(){
+		TokenType type = TokenType.INVALID;
+		if(this.hasType(CharacterType.ALPHA)) type = TokenType.NAME;
+		if(this.hasType(CharacterType.DIGIT)) type = TokenType.NUMBER;
+
+		return type;
 	}
 
 }

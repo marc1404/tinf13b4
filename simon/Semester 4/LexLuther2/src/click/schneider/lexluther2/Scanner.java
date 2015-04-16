@@ -28,11 +28,15 @@ public class Scanner {
 
 	public String currentRead;
 	
+	private DecisionBoard decisionBoard;
+	
 	public Scanner(String input) {
 		super();
 		this.input = input;
 		this.inputChars = input.toCharArray();
 		
+		this.decisionBoard = new DecisionBoard();
+		this.decisionBoard.addRules();
 		
 		this.runScan();
 	}
@@ -141,7 +145,11 @@ public class Scanner {
 				nextTokenType = TokenType.FLOAT;
 			}
 			else if(state.is(StateType.INVALID)){
-				nextTokenType = TokenType.INVALID;
+				this.changeState(character.guessStateType());
+				nextTokenType = character.guessTokenType();
+				
+				if(!state.isInvalid())
+					outputToken = true;
 			}
 			else{
 				this.changeState(StateType.INVALID);
@@ -179,7 +187,7 @@ public class Scanner {
 		String read = "";
 		
 		if(this.tokenSafe != null) 	read += this.tokenSafe.text;		
-		if(characterToAdd != null)	read += characterToAdd.getChar();
+		if(characterToAdd != null)	read += characterToAdd.getChar();		
 		
 		this.currentRead = read;
 		
