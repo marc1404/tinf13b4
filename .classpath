@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="marc/Semester 3/programmieren/src"/>
+	<classpathentry kind="src" path="marc/Semester 3/web-engineering/src"/>
+	<classpathentry kind="src" path="marc/Semester 4/Compilerbau/Array Syntax Scanner/src"/>
+	<classpathentry kind="src" path="marc/Semester 4/Webengineering/Bobcat/src"/>
+	<classpathentry kind="src" path="marc/Semester 4/Webengineering/Webclient Marke Eigenbau/src"/>
+	<classpathentry kind="src" path="marc/Semester 4/Webengineering/Webserver Marke Eigenbau/src"/>
+	<classpathentry kind="src" path="Philipp/WebEngineering 2/src"/>
+	<classpathentry kind="src" path="simon/semester4/LexLuther2/src"/>
+	<classpathentry kind="src" path="simon/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="simon/semester4/LexLuther2/bin"/>
+</classpath>
