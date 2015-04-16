@@ -2,6 +2,7 @@ package click.schneider.lexluther2;
 
 import java.util.ArrayList;
 
+import click.schneider.lexluther2.Enum.CharacterType;
 import click.schneider.lexluther2.Enum.StateType;
 
 public class State {
@@ -60,5 +61,12 @@ public class State {
 	
 	public static State createEmpty(){
 		return new State(StateType.EMPTY);
+	}
+	
+	public static State fromCharacter(LexCharacter character){
+		StateType type = StateType.EMPTY;
+		if(character.hasType(CharacterType.ALPHA)) type = StateType.NAME;
+		
+		return new State(type);
 	}
 }

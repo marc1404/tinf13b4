@@ -108,14 +108,18 @@ public class Scanner {
 				this.changeState(StateType.NAME);
 				nextTokenType = TokenType.NAME;
 				outputToken = true;
-			} else if(state.is("NAME,NUMBER") && character.hasType(CharacterType.ALPHA) ){
+			} else if(state.is("NAME,NUMBER") && character.hasType(CharacterType.ALPHANUMERIC) ){
 				this.changeState(StateType.NAME);
 				nextTokenType = TokenType.NAME;
 			} 
 			else if(state.is("NUMBER") && character.hasType(CharacterType.DOT)){
 				this.changeState(StateType.DOT);
 				nextTokenType = TokenType.FLOAT;
-			} 
+			}
+			else if(state.is("NUMBER") && character.hasType(CharacterType.ALPHA)){
+				this.changeState(StateType.NAME);
+				nextTokenType = TokenType.NAME;
+			}
 			else if(state.is(StateType.DOT) && character.hasType(CharacterType.DIGIT)){
 				this.changeState(StateType.DECIMAL);
 				nextTokenType = TokenType.FLOAT;
@@ -133,7 +137,6 @@ public class Scanner {
 				outputToken = true;
 			}
 			
-							
 						
 			if(outputToken && this.tokenSafe != null){				
 				returnToken = new Token(this.tokenSafe);
@@ -142,6 +145,8 @@ public class Scanner {
 			}
 			
 			this.fillTokenSafe(nextTokenType, character);		
+			
+			
 			
 			if(this.currentRead.equals("NULL")){
 				this.changeTokenSafe(TokenType.NULL);
