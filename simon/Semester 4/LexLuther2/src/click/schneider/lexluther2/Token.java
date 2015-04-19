@@ -1,11 +1,12 @@
 package click.schneider.lexluther2;
 
+import java.util.ArrayList;
+
 import click.schneider.lexluther2.Enum.StateType;
 import click.schneider.lexluther2.Enum.TokenType;
 
 public class Token {
 
-	
 	
 	public TokenType type;
 	
@@ -17,6 +18,12 @@ public class Token {
 	
 	public int pointer;	
 	
+	public int startIndex;
+	
+	public SymbolTable symbolTable;
+	
+	public Symbol symbol;
+	
 
 	public Token(TokenType type, String text, StateType state, int pointer) {
 		super();
@@ -26,14 +33,15 @@ public class Token {
 		this.pointer = pointer;
 		
 		this.value = new TokenValue();
+		this.symbolTable = this.getSymbolTable();
 	}
 	
-	public Token(Token token){
-		this.type = token.type;
-		this.text = token.text;
-		this.state = token.state;
-		this.pointer = token.pointer;
-		this.value = token.value;
+	public SymbolTable getSymbolTable(){
+		return SymbolTable.getBase();
+	}
+	
+	public Token(Token token){			
+		this(token.type, token.text, token.state, token.pointer);
 	}
 	
 	
@@ -54,7 +62,7 @@ public class Token {
 	}
 	
 	public String toString(){
-		return "Token: " + this.type + " = '" + this.text + "' at index " + this.pointer;
+		return "Token: " + this.type + " = '" + this.text + "' \t| id: " + this.getSymbolId()  + " at index " + this.startIndex;
 	}
 	
 	public Object clone(){
@@ -71,6 +79,22 @@ public class Token {
 		
 	}
 	
+	public void outputTo(ArrayList<Token> tokens){
+		System.out.println("Output token: " + this.type);
+		tokens.add(this);
+		
+		this.startIndex = this.pointer - this.text.length() + 1;
+		
+		Symbol symbol = this.symbolTable.addSymbol(this);
+		this.symbol = symbol;		
+	}
+	
+	public int getSymbolId(){
+		if(this.symbol == null) return -1;
+		
+		return this.symbol.id;
+		
+	}
 	
 	
 	

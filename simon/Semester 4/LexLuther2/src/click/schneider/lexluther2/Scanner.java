@@ -50,10 +50,8 @@ public class Scanner {
 			this.token = this.nextToken();
 			
 			if(this.token == null) break;
-			else 			System.out.println("======== " + this.token.type);
-
 			
-			this.tokens.add(this.token);
+			this.token.outputTo(this.tokens);
 		}
 		
 		System.out.println("===");
@@ -63,6 +61,9 @@ public class Scanner {
 		for(Token token : this.tokens){
 			System.out.println(token);
 		}
+		
+		System.out.println("\r\nSymboltable:");		
+		System.out.println(SymbolTable.getBase());
 		
 	}
 	
