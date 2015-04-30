@@ -16,6 +16,7 @@ public class AddressList {
 
     private Sequelize db = Database.get();
 
+    private String[] searchableColumns = { "name", "christianname", "email", "phone", "mobile", "street", "city", "country" };
     private String search;
 
     public void setSearch(String search){
@@ -24,9 +25,19 @@ public class AddressList {
 
     public List<Address> getList(){
         List<Address> addresses = new ArrayList<Address>();
-        String sql = "SELECT id FROM address;";
+        String sql = "SELECT id FROM address";
+
+        if(search != null){
+            sql += where();
+        }
 
         try(PreparedStatement statement = db.prepare(sql)){
+            if(search != null) {
+                for (int i = 0; i < searchableColumns.length; i++) {
+                    statement.setString(i + 1, "%" + this.search + "%");
+                }
+            }
+
             ResultSet result = statement.executeQuery();
 
             while(result.next()){
@@ -46,6 +57,21 @@ public class AddressList {
 
     public void delete(){
 
+    }
+
+    private String where(){
+        String where = " WHERE ";
+
+        for(int i = 0; i < searchableColumns.length; i++){
+            String column = searchableColumns[i];
+            where += column + " LIKE ?";
+
+            if(i < searchableColumns.length - 1){
+                where += " OR ";
+            }
+        }
+
+        return where;
     }
 
 }

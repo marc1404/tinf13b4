@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<jsp:useBean id="addressList" class="com.vornetran.marc.beans.AddressList" scope="request"></jsp:useBean>
+<jsp:useBean id="addressList" class="com.vornetran.marc.beans.AddressList" scope="request"/>
+<jsp:setProperty name="addressList" property="search"/>
 <t:layout>
     <jsp:attribute name="title">Address List</jsp:attribute>
   <jsp:body>
@@ -16,6 +17,17 @@
       <div class="page-header">
         <h1>Address List</h1>
       </div>
+      <form method="GET">
+        <div class="input-group">
+          <input name="search" type="search" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </form>
+      <hr/>
       <div class="list-group">
         <c:forEach items="${addressList.getList()}" var="address">
           <div class="row list-group-item">
