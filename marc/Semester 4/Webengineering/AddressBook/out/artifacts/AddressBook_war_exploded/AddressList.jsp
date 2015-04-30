@@ -28,7 +28,7 @@
               ${address.country}<br>
             </div>
             <div class="col-xs-6">
-              <em>Email:</em> ${address.email}<br>
+              <em>Email:</em> <a href="mailto:${address.email}">${address.email}</a><br>
               <em>Phone:</em> ${address.phone}<br>
               <em>Mobile:</em> ${address.mobile}<br>
               <em>Birthday:</em> ${address.birthday}<br>
