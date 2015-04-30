@@ -22,16 +22,8 @@ public class Sequelize {
 		this.connection = DriverManager.getConnection("jdbc:mysql://localhost/" + database, username, password);
 	}
 	
-	public ResultSet query(String sql) throws SQLException {
-		PreparedStatement statement = this.connection.prepareStatement(sql);
-		
-		return statement.executeQuery();
-	}
-	
-	public int update(String sql) throws SQLException {
-		PreparedStatement statement = this.connection.prepareStatement(sql);
-		
-		return statement.executeUpdate();
+	public PreparedStatement prepare(String sql) throws SQLException {
+		return this.connection.prepareStatement(sql);
 	}
 	
 	public void close() throws SQLException {
