@@ -11,7 +11,18 @@
 <jsp:useBean id="addressList" class="com.vornetran.marc.beans.AddressList" scope="request"/>
 <jsp:setProperty name="addressList" property="search"/>
 <t:layout>
-    <jsp:attribute name="title">Address List</jsp:attribute>
+  <jsp:attribute name="title">Address List</jsp:attribute>
+  <jsp:attribute name="js">
+    <script>
+      $(function(){
+        $('.list-group-item').hover(function(){
+          $(this).find('a.btn').removeClass('fadeOutLeft').addClass('fadeInLeft');
+        }, function(){
+          $(this).find('a.btn').removeClass('fadeInLeft').addClass('fadeOutLeft');
+        });
+      });
+    </script>
+  </jsp:attribute>
   <jsp:body>
     <div class="container">
       <div class="page-header">
@@ -31,19 +42,24 @@
       <div class="list-group">
         <c:forEach items="${addressList.getList()}" var="address">
           <div class="row list-group-item">
-            <div class="col-xs-6">
-              <a href="/Address.jsp?id=${address.id}">
-                <strong>${address.addressForm} ${address.christianName} ${address.name}</strong>
-              </a><br>
+            <div class="col-xs-4">
+              <strong>${address.addressForm} ${address.christianName} ${address.name}</strong><br>
               ${address.street} ${address.number}<br>
               ${address.postcode} ${address.city}<br>
               ${address.country}<br>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-4">
               <em>Email:</em> <a href="mailto:${address.email}">${address.email}</a><br>
               <em>Phone:</em> ${address.phone}<br>
               <em>Mobile:</em> ${address.mobile}<br>
               <em>Birthday:</em> ${address.birthday}<br>
+            </div>
+            <div class="col-xs-4">
+              <div class="pull-right">
+                <a href="/Address.jsp?id=${address.id}" class="btn btn-default btn-xs animated" style="opacity: 0">Details</a><br>
+                <br>
+                <a href="" class="btn btn-danger btn-xs animated" style="opacity: 0">Delete</a><br>
+              </div>
             </div>
           </div>
         </c:forEach>
