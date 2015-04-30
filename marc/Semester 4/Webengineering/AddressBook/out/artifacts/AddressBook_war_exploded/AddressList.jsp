@@ -18,14 +18,22 @@
       </div>
       <div class="list-group">
         <c:forEach items="${addressList.getList()}" var="address">
-          <a href="/Address.jsp?id=${address.id}" class="list-group-item">
-            <address>
-              <strong>${address.christianName} ${address.name}</strong><br>
-              795 Folsom Ave, Suite 600<br>
-              San Francisco, CA 94107<br>
-              <abbr title="Phone">P:</abbr> (123) 456-7890
-            </address>
-          </a>
+          <div class="row list-group-item">
+            <div class="col-xs-6">
+              <a href="/Address.jsp?id=${address.id}">
+                <strong>${address.addressForm} ${address.christianName} ${address.name}</strong>
+              </a><br>
+              ${address.street} ${address.number}<br>
+              ${address.postcode} ${address.city}<br>
+              ${address.country}<br>
+            </div>
+            <div class="col-xs-6">
+              <em>Email:</em> ${address.email}<br>
+              <em>Phone:</em> ${address.phone}<br>
+              <em>Mobile:</em> ${address.mobile}<br>
+              <em>Birthday:</em> ${address.birthday}<br>
+            </div>
+          </div>
         </c:forEach>
       </div>
     </div>
