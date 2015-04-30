@@ -13,15 +13,7 @@
 <t:layout>
   <jsp:attribute name="title">Address List</jsp:attribute>
   <jsp:attribute name="js">
-    <script>
-      $(function(){
-        $('.list-group-item').hover(function(){
-          $(this).find('a.btn').removeClass('fadeOutLeft').addClass('fadeInLeft');
-        }, function(){
-          $(this).find('a.btn').removeClass('fadeInLeft').addClass('fadeOutLeft');
-        });
-      });
-    </script>
+    <script src="js/addressList.js"></script>
   </jsp:attribute>
   <jsp:body>
     <div class="container">
@@ -41,7 +33,7 @@
       <hr/>
       <div class="list-group">
         <c:forEach items="${addressList.getList()}" var="address">
-          <div class="row list-group-item">
+          <div class="row list-group-item animated">
             <div class="col-xs-4">
               <strong>${address.addressForm} ${address.christianName} ${address.name}</strong><br>
               ${address.street} ${address.number}<br>
@@ -58,7 +50,7 @@
               <div class="pull-right">
                 <a href="/Address.jsp?id=${address.id}" class="btn btn-default btn-xs animated" style="opacity: 0">Details</a><br>
                 <br>
-                <a href="" class="btn btn-danger btn-xs animated" style="opacity: 0">Delete</a><br>
+                <button type="button" class="btn btn-danger btn-xs animated" style="opacity: 0" data-id="${address.id}" data-delete>Delete</button><br>
               </div>
             </div>
           </div>
