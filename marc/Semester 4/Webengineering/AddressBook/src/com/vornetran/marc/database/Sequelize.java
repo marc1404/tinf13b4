@@ -9,10 +9,16 @@ import java.sql.SQLException;
 public class Sequelize {
 
 	private Connection connection;
-	
+
+	static {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+	}
+
 	public Sequelize(String database, String username, String password) throws Exception {
-		Class.forName("com.mysql.jdbc.Driver");
-		
 		this.connection = DriverManager.getConnection("jdbc:mysql://localhost/" + database, username, password);
 	}
 	
