@@ -29,8 +29,11 @@ public class Address {
     private String country;
     private Date birthday;
 
-    public void read(int id){
+    public void setId(int id){
         this.id = id;
+    }
+
+    public void read(){
         String sql = "SELECT * FROM address WHERE id = ?;";
 
         try(PreparedStatement statement = this.db.prepare(sql)){
@@ -80,6 +83,54 @@ public class Address {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getChristianName() {
+        return christianName;
+    }
+
+    public String getAddressForm() {
+        return addressForm;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public Date getBirthday() {
+        return birthday;
     }
 
 }
