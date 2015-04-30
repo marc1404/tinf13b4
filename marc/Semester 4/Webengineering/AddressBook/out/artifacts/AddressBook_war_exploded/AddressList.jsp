@@ -20,9 +20,9 @@
         <c:forEach items="${addressList.getList()}" var="address">
           <a href="/Address.jsp?id=${address.id}" class="list-group-item">
             <address>
-              <strong>${address.addressform} ${address.christianName} ${address.name}</strong><br>
-              ${address.street} ${address.number}<br>
-              ${address.city}, ${address.country} ${address.postcode}<br>
+              <strong>${address.christianName} ${address.name}</strong><br>
+              795 Folsom Ave, Suite 600<br>
+              San Francisco, CA 94107<br>
               <abbr title="Phone">P:</abbr> (123) 456-7890
             </address>
           </a>

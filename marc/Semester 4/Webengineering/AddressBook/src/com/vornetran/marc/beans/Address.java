@@ -49,7 +49,7 @@ public class Address {
                 this.phone = result.getString("phone");
                 this.mobile = result.getString("mobile");
                 this.street = result.getString("street");
-                this.number = result.getInt("numberr");
+                this.number = result.getInt("number");
                 this.city = result.getString("city");
                 this.postcode = result.getString("postcode");
                 this.country = result.getString("country");
@@ -83,6 +83,10 @@ public class Address {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
+    }
+
+    public int getId(){
+        return id;
     }
 
     public String getName() {
