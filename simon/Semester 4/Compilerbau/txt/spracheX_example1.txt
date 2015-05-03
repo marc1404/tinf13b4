@@ -1,0 +1,16 @@
+program test;
+read number : int
+quad : int
+print output: string
+
+begin
+12
+12
+12
+12
+12
+12
+12
+quad := number + number
+end
+.

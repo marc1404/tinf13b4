@@ -1,0 +1,13 @@
+package dhbw.schneider.ArraySyntax;
+
+public enum TokenType {
+	ANY, ANYANY, NUMBER, FLOAT, NAME, COMMA, RSBR, LSBR, _INVALID, WS, NULL, _EOF, DOUBLEDOT, SMALLFLOAT
+}
+
+/**
+5.		[FLOAT]
+5.6		[FLOAT]
+5..6	[NUMBER][DOUBLEDOT][NUMBER]
+5...6	[FLOAT][DOUBLEDOT][NUMBER]
+5....7	[FLOAT][DOUBLEDOT][FLOAT]
+**/

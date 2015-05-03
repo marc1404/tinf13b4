@@ -49,6 +49,14 @@ public class LexCharacter {
 			detectedTypes.add(CharacterType.WS);
 		}
 		
+		if(this.is('"')){
+			detectedTypes.add(CharacterType.QUOTE);
+		}
+		
+		if(this.is('\\')){
+			detectedTypes.add(CharacterType.BACKSLASH);
+		}
+		
 		boolean isAlphaNumeric = false;
 		if(Character.isAlphabetic(this.character)){
 			detectedTypes.add(CharacterType.ALPHA);
@@ -88,6 +96,7 @@ public class LexCharacter {
 	}
 	
 	public boolean hasType(CharacterType characterType){
+		if(characterType == CharacterType._ANY) return true;		
 		return this.types.contains(characterType);
 	}
 	

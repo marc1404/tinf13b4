@@ -1,5 +1,9 @@
 package click.schneider.lexluther2;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import click.schneider.lexluther2.Enum.CharacterType;
@@ -15,6 +19,8 @@ public class Scanner {
 	private Token tokenSafe;
 	
 	public String input;
+	
+	public BufferedReader inputReader;
 	
 	public State state;
 	
@@ -38,9 +44,15 @@ public class Scanner {
 		this.decisionBoard = new DecisionBoard();
 		this.decisionBoard.addRules();
 		
+		
 		this.runScan();
 	}
 	
+	public Scanner(BufferedReader reader){
+		this("");
+		this.inputReader = reader;
+	}
+		
 	public void runScan(){
 		
 		this.state = State.createEmpty();	
@@ -65,6 +77,14 @@ public class Scanner {
 		System.out.println("\r\nSymboltable:");		
 		System.out.println(SymbolTable.getBase());
 		
+	}
+	
+	public void runReaderScan(){
+		int c;
+		/*while(c = this.inputReader.read() != -1){
+			
+		}
+		*/
 	}
 	
 
@@ -155,6 +175,7 @@ public class Scanner {
 	
 	public LexCharacter nextCharacter(){
 		this.movePointer();
+		
 			
 		LexCharacter character = this.characterAt(this.pointer);
 		
