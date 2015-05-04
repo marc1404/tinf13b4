@@ -55,7 +55,7 @@
           <div class="col-xs-4">
             <div class="pull-right">
               <a href="/Address.jsp?id=${address.id}" class="btn btn-default btn-xs btn-block">Details</a><br>
-              <button type="button" class="btn btn-danger btn-xs btn-block" data-id="${address.id}" data-delete>Löschen</button><br>
+              <button type="button" class="btn btn-danger btn-xs btn-block" data-id="${address.id}" data-delete data-redirect="reload">Löschen</button><br>
             </div>
           </div>
         </div>

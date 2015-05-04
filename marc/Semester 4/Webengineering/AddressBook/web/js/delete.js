@@ -5,6 +5,7 @@
 $(function(){
     $('button[data-delete]').click(function(){
         var id = $(this).data('id');
+        var redirect = $(this).data('redirect');
 
         swal({
             title: 'Sind Sie sicher?',
@@ -16,7 +17,11 @@ $(function(){
             closeOnConfirm: true
         }, function(){
             $.get('/delete?id=' + id, function(){
-                location.reload();
+                if(redirect === 'reload'){
+                    location.reload();
+                }else{
+                    location.href = redirect;
+                }
             });
         });
     });

@@ -15,6 +15,9 @@ ${address.read()}
     <jsp:attribute name="title">
         ${address.addressForm} ${address.christianName} ${address.name}
     </jsp:attribute>
+    <jsp:attribute name="js">
+        <script src="js/delete.js"></script>
+    </jsp:attribute>
     <jsp:body>
         <c:choose>
             <c:when test="${address.exists()}">
@@ -38,7 +41,7 @@ ${address.read()}
                 <hr/>
                 <a href="/AddressList.jsp" class="btn btn-default">Zurück</a>
                 <a href="/AddressForm.jsp?id=${param.id}" class="btn btn-primary">Bearbeiten</a>
-                <button type="button" class="btn btn-danger pull-right">Löschen</button>
+                <button type="button" class="btn btn-danger pull-right" data-id="${address.id}" data-delete data-redirect="/AddressList.jsp">Löschen</button>
             </c:when>
             <c:otherwise>
                 <br>
