@@ -14,12 +14,7 @@ $(function(){
             confirmButtonText: 'Delete',
             closeOnConfirm: true
         }, function(){
-            var container = $(that).closest('.list-group-item');
-
-            container.addClass('flipOutX');
-            setTimeout(function(){
-                container.remove();
-            }, 1000);
+            $(that).closest('.list-group-item').remove();
         });
     });
 });
