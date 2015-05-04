@@ -111,7 +111,7 @@ ${address.read()}
                 <a href="/AddressList.jsp" class="btn btn-warning">Abbrechen</a>
             </c:otherwise>
         </c:choose>
-        <button type="submit" class="btn btn-success">Speichern</button>
+        <button type="submit" class="btn btn-success pull-right">Speichern</button>
     </form>
   </jsp:body>
 </t:layout>
