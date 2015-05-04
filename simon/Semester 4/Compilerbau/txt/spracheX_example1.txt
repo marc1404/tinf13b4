@@ -1,6 +1,6 @@
 program test;
-read number : int
-quad : int
+read number : int;
+quad : int;
 print output: string
 
 begin
