@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by Marc on 30.04.2015.
@@ -133,8 +134,10 @@ public class Address {
         return country;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public String getBirthday() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d. MMMM y");
+
+        return dateFormat.format(this.birthday);
     }
 
 }

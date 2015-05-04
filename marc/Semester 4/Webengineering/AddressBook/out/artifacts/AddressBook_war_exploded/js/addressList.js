@@ -3,12 +3,6 @@
  */
 
 $(function(){
-    $('.list-group-item').hover(function(){
-        $(this).find('.btn').removeClass('fadeOutLeft').addClass('fadeInLeft');
-    }, function(){
-        $(this).find('.btn').removeClass('fadeInLeft').addClass('fadeOutLeft');
-    });
-
     $('button[data-delete]').click(function(){
         var that = this;
 
@@ -20,12 +14,7 @@ $(function(){
             confirmButtonText: 'Delete',
             closeOnConfirm: true
         }, function(){
-            var container = $(that).closest('.list-group-item');
-
-            container.addClass('flipOutX');
-            setTimeout(function(){
-                container.remove();
-            }, 1000);
+            $(that).closest('.list-group-item').remove();
         });
     });
 });

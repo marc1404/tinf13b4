@@ -11,18 +11,18 @@
 <jsp:useBean id="addressList" class="com.vornetran.marc.beans.AddressList" scope="request"/>
 <jsp:setProperty name="addressList" property="search"/>
 <t:layout>
-  <jsp:attribute name="title">Address List</jsp:attribute>
+  <jsp:attribute name="title">Adressbuch</jsp:attribute>
   <jsp:attribute name="js">
     <script src="js/addressList.js"></script>
   </jsp:attribute>
   <jsp:body>
     <div class="container">
       <div class="page-header">
-        <h1>Address List</h1>
+        <h1>Adressbuch</h1>
       </div>
       <form method="GET">
         <div class="input-group">
-          <input name="search" type="search" class="form-control" placeholder="Search...">
+          <input name="search" type="search" class="form-control" placeholder="Suche...">
           <span class="input-group-btn">
             <button type="submit" class="btn btn-primary">
               <span class="glyphicon glyphicon-search"></span>
@@ -42,15 +42,14 @@
             </div>
             <div class="col-xs-4">
               <em>Email:</em> <a href="mailto:${address.email}">${address.email}</a><br>
-              <em>Phone:</em> ${address.phone}<br>
-              <em>Mobile:</em> ${address.mobile}<br>
-              <em>Birthday:</em> ${address.birthday}<br>
+              <em>Telefon:</em> ${address.phone}<br>
+              <em>Mobil:</em> ${address.mobile}<br>
+              <em>Geburtstag:</em> ${address.birthday}<br>
             </div>
             <div class="col-xs-4">
               <div class="pull-right">
-                <a href="/Address.jsp?id=${address.id}" class="btn btn-default btn-xs animated" style="opacity: 0">Details</a><br>
-                <br>
-                <button type="button" class="btn btn-danger btn-xs animated" style="opacity: 0" data-id="${address.id}" data-delete>Delete</button><br>
+                <a href="/Address.jsp?id=${address.id}" class="btn btn-default btn-xs btn-block">Details</a><br>
+                <button type="button" class="btn btn-danger btn-xs btn-block" data-id="${address.id}" data-delete>Löschen</button><br>
               </div>
             </div>
           </div>
