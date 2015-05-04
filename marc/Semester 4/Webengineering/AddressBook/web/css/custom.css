@@ -6,3 +6,7 @@ html, body {
 body {
     overflow-y: scroll;
 }
+
+.container {
+    padding-bottom: 10px;
+}

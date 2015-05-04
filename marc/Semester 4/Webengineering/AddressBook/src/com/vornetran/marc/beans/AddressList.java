@@ -25,7 +25,7 @@ public class AddressList {
 
     public List<Address> getList(){
         List<Address> addresses = new ArrayList<Address>();
-        String sql = "SELECT id FROM address";
+        String sql = "SELECT * FROM address";
 
         if(search != null){
             sql += where();
@@ -41,12 +41,7 @@ public class AddressList {
             ResultSet result = statement.executeQuery();
 
             while(result.next()){
-                Address address = new Address();
-                int id = result.getInt("id");
-
-                address.setId(id);
-                address.read();
-                addresses.add(address);
+                addresses.add(new Address(result));
             }
         }catch(SQLException ex){
             ex.printStackTrace();

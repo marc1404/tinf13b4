@@ -4,17 +4,20 @@
 
 $(function(){
     $('button[data-delete]').click(function(){
-        var that = this;
+        var id = $(this).data('id');
 
         swal({
-            title: 'Are you sure?',
+            title: 'Sind Sie sicher?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Delete',
+            confirmButtonText: 'Löschen',
+            cancelButtonText: 'Abbrechen',
             closeOnConfirm: true
         }, function(){
-            $(that).closest('.list-group-item').remove();
+            $.get('/delete?id=' + id, function(){
+                location.reload();
+            });
         });
     });
 });

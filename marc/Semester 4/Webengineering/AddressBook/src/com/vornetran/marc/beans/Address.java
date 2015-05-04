@@ -2,12 +2,9 @@ package com.vornetran.marc.beans;
 
 import com.vornetran.marc.database.Database;
 import com.vornetran.marc.database.Sequelize;
+import com.vornetran.marc.models.*;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
+import java.sql.*;
 
 /**
  * Created by Marc on 30.04.2015.
@@ -16,26 +13,54 @@ public class Address {
 
     private Sequelize db = Database.get();
 
-    private int id;
-    private String name;
-    private String christianName;
-    private String addressForm;
-    private String email;
-    private String phone;
-    private String mobile;
-    private String street;
-    private int number;
-    private String city;
-    private String postcode;
-    private String country;
-    private Date birthday;
+    private Integer id;
+    private Name name;
+    private Location location;
+    private ContactDetails contactDetails;
+    private Birthday birthday;
+    private boolean exists = false;
+
+    public Address(){
+        this.name = new Name();
+        this.location = new Location();
+        this.contactDetails = new ContactDetails();
+        this.birthday = new Birthday();
+    }
+
+    public Address(int id){
+        this.id = id;
+    }
+
+    public Address(ResultSet result) throws SQLException {
+        readRow(result);
+    }
+
+    public Address(Integer id, Name name, Location location, ContactDetails contactDetails, Birthday birthday){
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.contactDetails = contactDetails;
+        this.birthday = birthday;
+    }
+
+    public void parseId(String id){
+        try {
+            this.id = Integer.parseInt(id);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 
     public void setId(int id){
         this.id = id;
     }
 
     public void read(){
-        String sql = "SELECT * FROM address WHERE id = ?;";
+        if(this.id == null){
+            return;
+        }
+
+        String sql = "SELECT * FROM address WHERE id = ? LIMIT 1;";
 
         try(PreparedStatement statement = this.db.prepare(sql)){
             statement.setInt(1, id);
@@ -43,101 +68,167 @@ public class Address {
             ResultSet result = statement.executeQuery();
 
             if(result.next()){
-                this.name = result.getString("name");
-                this.christianName = result.getString("christianname");
-                this.addressForm = result.getString("addressform");
-                this.email = result.getString("email");
-                this.phone = result.getString("phone");
-                this.mobile = result.getString("mobile");
-                this.street = result.getString("street");
-                this.number = result.getInt("number");
-                this.city = result.getString("city");
-                this.postcode = result.getString("postcode");
-                this.country = result.getString("country");
-                this.birthday = result.getDate("birthday");
+                readRow(result);
             }
         }catch(SQLException ex){
             ex.printStackTrace();
         }
     }
 
-    public void save(){
-        String sql = "UPDATE address SET name = ?, christianname = ?, addressform = ?, email = ?, phone = ?, mobile = ?, street = ?, number = ?, city = ?, postcode = ?, country = ?, birthday = ? WHERE id = ?;";
+    public boolean save(){
+        if(id != null){
+            return update();
+        }else{
+            return insert();
+        }
+    }
+
+    public void delete(){
+        String sql = "DELETE FROM address WHERE id = ? LIMIT 1;";
 
         try(PreparedStatement statement = this.db.prepare(sql)){
-            int j = 1;
-            statement.setString(j++, this.name);
-            statement.setString(j++, this.christianName);
-            statement.setString(j++, this.addressForm);
-            statement.setString(j++, this.email);
-            statement.setString(j++, this.phone);
-            statement.setString(j++, this.mobile);
-            statement.setString(j++, this.street);
-            statement.setInt(j++, this.number);
-            statement.setString(j++, this.city);
-            statement.setString(j++, this.postcode);
-            statement.setString(j++, this.country);
-            statement.setDate(j++, this.birthday);
-            statement.setInt(j++, this.id);
-
+            statement.setInt(1, this.id);
             statement.executeUpdate();
+            System.out.println(sql + id);
         }catch(SQLException ex){
             ex.printStackTrace();
         }
     }
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
 
     public String getName() {
-        return name;
+        return name.lastName;
     }
 
     public String getChristianName() {
-        return christianName;
+        return name.firstName;
     }
 
     public String getAddressForm() {
-        return addressForm;
+        return name.addressForm;
     }
 
     public String getEmail() {
-        return email;
+        return contactDetails.email;
     }
 
     public String getPhone() {
-        return phone;
+        return contactDetails.phone;
     }
 
     public String getMobile() {
-        return mobile;
+        return contactDetails.mobile;
     }
 
     public String getStreet() {
-        return street;
+        return location.street.name;
     }
 
     public int getNumber() {
-        return number;
+        return location.street.number;
     }
 
     public String getCity() {
-        return city;
+        return location.city.name;
     }
 
     public String getPostcode() {
-        return postcode;
+        return location.city.postCode;
     }
 
     public String getCountry() {
-        return country;
+        return location.country;
     }
 
-    public String getBirthday() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d. MMMM y");
+    public String displayBirthday() {
+        return birthday.display();
+    }
 
-        return dateFormat.format(this.birthday);
+    public Date getBirthday() {
+        return birthday.date;
+    }
+
+    public boolean exists(){
+        return this.exists;
+    }
+
+    private void readRow(ResultSet result) throws SQLException {
+        this.id = result.getInt("id");
+        this.name = new Name(result.getString("addressform"), result.getString("christianname"), result.getString("name"));
+        Street street = new Street(result.getString("street"), result.getInt("number"));
+        City city = new City(result.getString("postcode"), result.getString("city"));
+        String country = result.getString("country");
+        this.location = new Location(street, city, country);
+        this.contactDetails = new ContactDetails(result.getString("email"), result.getString("phone"), result.getString("mobile"));
+        this.birthday = new Birthday(result.getDate("birthday"));
+        this.exists = true;
+    }
+
+    private boolean update(){
+        String sql = "UPDATE address SET name = ?, christianname = ?, addressform = ?, email = ?, phone = ?, mobile = ?, street = ?, number = ?, city = ?, postcode = ?, country = ?, birthday = ? WHERE id = ?;";
+
+        try(PreparedStatement statement = this.db.prepare(sql)){
+            int j = 1;
+
+            statement.setString(j++, name.lastName);
+            statement.setString(j++, name.firstName);
+            statement.setString(j++, name.addressForm);
+            statement.setString(j++, contactDetails.email);
+            statement.setString(j++, contactDetails.phone);
+            statement.setString(j++, contactDetails.mobile);
+            statement.setString(j++, location.street.name);
+            statement.setInt(j++, location.street.number);
+            statement.setString(j++, location.city.name);
+            statement.setString(j++, location.city.postCode);
+            statement.setString(j++, location.country);
+            statement.setDate(j++, birthday.date);
+            statement.setInt(j++, this.id);
+
+            statement.executeUpdate();
+
+            return true;
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    private boolean insert(){
+        String sql = "INSERT INTO address (addressform, christianname, name, street, number, postcode, city, country, email, phone, mobile, birthday) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+        try(PreparedStatement statement = this.db.prepare(sql, Statement.RETURN_GENERATED_KEYS)){
+            int j = 1;
+
+            statement.setString(j++, name.addressForm);
+            statement.setString(j++, name.firstName);
+            statement.setString(j++, name.lastName);
+            statement.setString(j++, location.street.name);
+            statement.setInt(j++, location.street.number);
+            statement.setString(j++, location.city.postCode);
+            statement.setString(j++, location.city.name);
+            statement.setString(j++, location.country);
+            statement.setString(j++, contactDetails.email);
+            statement.setString(j++, contactDetails.phone);
+            statement.setString(j++, contactDetails.mobile);
+            statement.setDate(j++, birthday.date);
+
+            statement.executeUpdate();
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+
+            generatedKeys.next();
+
+            this.id = generatedKeys.getInt(1);
+            this.exists = true;
+
+            return true;
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return false;
+        }
     }
 
 }
