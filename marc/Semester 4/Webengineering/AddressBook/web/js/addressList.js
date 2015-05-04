@@ -3,12 +3,6 @@
  */
 
 $(function(){
-    $('.list-group-item').hover(function(){
-        $(this).find('.btn').removeClass('fadeOutLeft').addClass('fadeInLeft');
-    }, function(){
-        $(this).find('.btn').removeClass('fadeInLeft').addClass('fadeOutLeft');
-    });
-
     $('button[data-delete]').click(function(){
         var that = this;
 

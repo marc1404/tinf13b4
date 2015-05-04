@@ -48,9 +48,9 @@
             </div>
             <div class="col-xs-4">
               <div class="pull-right">
-                <a href="/Address.jsp?id=${address.id}" class="btn btn-default btn-xs animated" style="opacity: 0">Details</a><br>
+                <a href="/Address.jsp?id=${address.id}" class="btn btn-default btn-xs">Details</a><br>
                 <br>
-                <button type="button" class="btn btn-danger btn-xs animated" style="opacity: 0" data-id="${address.id}" data-delete>Delete</button><br>
+                <button type="button" class="btn btn-danger btn-xs" data-id="${address.id}" data-delete>Delete</button><br>
               </div>
             </div>
           </div>

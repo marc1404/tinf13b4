@@ -17,7 +17,6 @@
         </title>
         <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.6/animate.min.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
     </head>
     <body>
