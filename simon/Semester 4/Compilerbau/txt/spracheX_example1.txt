@@ -1,16 +1,16 @@
-program test;
-read number : int;
-quad : int;
-print output: string
-
+program test5;
+read x : int;
+print y : float;
+z : int;
 begin
-12
-12
-12
-12
-12
-12
-12
-quad := number + number
-end
-.
+	while (x<4) begin
+		for (z:=0; z<4; z:=z+1)
+			x:=x+2;
+			
+		if x=4 then begin
+			x:=z*(x+2);
+			x:=x+10;
+			
+		end else y:=100.e-3;
+end;
+end.
