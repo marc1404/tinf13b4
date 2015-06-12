@@ -1,0 +1,10 @@
+<ui:composition template="Layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="title">Formular</ui:define>
+    <ui:define name="content">
+        <h2>Result</h2>
+        <p>#{calculator.x} #{calculator.operator} #{calculator.y} = #{calculator.result}</p>
+        <a href="/Formular.xhtml" class="waves-effect waves-light btn">Back</a>
+    </ui:define>
+</ui:composition>

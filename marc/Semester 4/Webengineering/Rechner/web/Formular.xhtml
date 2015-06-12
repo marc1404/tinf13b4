@@ -1,0 +1,42 @@
+<ui:composition template="Layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Formular</ui:define>
+    <ui:define name="content">
+        <h2>Formular</h2>
+        <f:view>
+            <h:form id="form">
+                <h:messages styleClass="card-panel red white-text"/>
+
+                <div class="row">
+
+                    <div class="col s4">
+                        <div class="input-field">
+                            <h:inputText id="x" value="#{calculator.x}"/>
+                            <h:outputLabel for="x" value="X"/>
+                        </div>
+                    </div>
+
+                    <div class="col s4">
+                        <div class="input-field">
+                            <h:inputText id="operator" value="#{calculator.operator}"/>
+                            <h:outputLabel for="operator" value="Operator"/>
+                        </div>
+                    </div>
+
+                    <div class="col s4">
+                        <div class="input-field">
+                            <h:inputText id="y" value="#{calculator.y}"/>
+                            <h:outputLabel for="y" value="Y"/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h:commandLink value="Calculate" action="#{calculator.calculate()}" styleClass="waves-effect waves-light btn"/>
+            </h:form>
+        </f:view>
+    </ui:define>
+</ui:composition>
