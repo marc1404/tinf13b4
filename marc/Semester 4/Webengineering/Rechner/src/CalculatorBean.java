@@ -1,11 +1,11 @@
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  * Created by Marc on 11/06/2015.
  */
 @ManagedBean(name = "calculator")
-@SessionScoped
+@RequestScoped
 public class CalculatorBean {
 
     private String operator;
@@ -51,11 +51,13 @@ public class CalculatorBean {
     }
 
     public String getOperator() {
+        System.out.println("CalculatorBean: getOperator()");
         return operator;
     }
 
     public void setOperator(String operator) {
         this.operator = operator;
+        System.out.println("CalculatorBean: setOperator()");
     }
 
     public String getErrorMessage() {
@@ -67,27 +69,33 @@ public class CalculatorBean {
     }
 
     public double getX() {
+        System.out.println("CalculatorBean: getX()");
         return x;
     }
 
     public void setX(double x) {
         this.x = x;
+        System.out.println("CalculatorBean: setX()");
     }
 
     public double getY() {
+        System.out.println("CalculatorBean: getY()");
         return y;
     }
 
     public void setY(double y) {
         this.y = y;
+        System.out.println("CalculatorBean: setY()");
     }
 
     public double getResult() {
+        System.out.println("CalculatorBean: getResult()");
         return result;
     }
 
     public void setResult(double result) {
         this.result = result;
+        System.out.println("CalculatorBean: setResult()");
     }
 
 }
